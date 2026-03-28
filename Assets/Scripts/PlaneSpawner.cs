@@ -18,12 +18,17 @@ public class PlaneSpawner : MonoBehaviour
 
     [Header("Double Spawn Settings")]
     [Range(0, 1)]
-    public float doubleSpawnChance = 0.2f; // 20% chance for two planes
+    public float initialDoubleSpawnChance = 0.1f;
+    [Range(0, 1)]
+    public float maxDoubleSpawnChance = 0.8f;
+    public float secondsToReachMaxDifficulty = 120f; // 2 minutes to reach peak difficulty
 
     private float nextSpawnTime;
+    private float startTime;
 
     void Start()
     {
+        startTime = Time.time;
         SetNextSpawn();
     }
 
@@ -45,16 +50,20 @@ public class PlaneSpawner : MonoBehaviour
     {
         if (spawnPositions.Length == 0) return;
 
-        // Roll the dice: should we spawn two?
-        bool isDoubleSpawn = Random.value < doubleSpawnChance && spawnPositions.Length >= 2;
+        // Calculate current difficulty (0 to 1 based on time elapsed)
+        float timeElapsed = Time.time - startTime;
+        float difficultyT = Mathf.Clamp01(timeElapsed / secondsToReachMaxDifficulty);
+
+        // Linearly interpolate the chance based on time
+        float currentDoubleSpawnChance = Mathf.Lerp(initialDoubleSpawnChance, maxDoubleSpawnChance, difficultyT);
+
+        bool isDoubleSpawn = Random.value < currentDoubleSpawnChance && spawnPositions.Length >= 2;
 
         if (isDoubleSpawn)
         {
-            // Pick two UNIQUE indices
             int firstIndex = Random.Range(0, spawnPositions.Length);
             int secondIndex = Random.Range(0, spawnPositions.Length);
 
-            // Make sure the second index isn't the same as the first
             while (secondIndex == firstIndex)
             {
                 secondIndex = Random.Range(0, spawnPositions.Length);
@@ -65,7 +74,6 @@ public class PlaneSpawner : MonoBehaviour
         }
         else
         {
-            // Just the normal single spawn
             int index = Random.Range(0, spawnPositions.Length);
             StartCoroutine(SpawnSequence(index));
         }
