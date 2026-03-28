@@ -7,7 +7,7 @@ public class PlayerAction : MonoBehaviour
     public GameObject poopObject;
     public Transform dropPosition;
     public int poopFuel;
-    public int maxFuel = 3;
+    public int maxFuel = 5;
     public Slider poopSlider;
     public float score;
     public TMP_Text scoreText;

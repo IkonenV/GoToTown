@@ -211,8 +211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAction
   poopObject: {fileID: 4849054618733271717, guid: 745d8ed7dfd854148b11bacd51bf381d, type: 3}
   dropPosition: {fileID: 466291202}
-  poopFuel: 3
-  maxFuel: 3
+  poopFuel: 5
+  maxFuel: 5
   poopSlider: {fileID: 0}
   score: 0
   scoreText: {fileID: 1496301678}
@@ -250,7 +250,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1481448}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -260,7 +260,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.70371044}
   m_EdgeRadius: 0
 --- !u!1 &219102484
 GameObject:
@@ -430,7 +430,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -575,8 +575,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   birdPrefab: {fileID: 5731561155138573480, guid: c997b317597fc3242b6ef384c15c2200, type: 3}
-  spawnInterval: 5
-  minY: -4
+  spawnInterval: 3
+  minY: -2
   maxY: 4
 --- !u!4 &689022173
 Transform:
@@ -769,7 +769,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1206709795}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 3
+  m_MaxValue: 5
   m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
@@ -1144,7 +1144,7 @@ Transform:
   m_GameObject: {fileID: 1152314371}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.3, y: -1.49, z: 0}
+  m_LocalPosition: {x: 14.3, y: -0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1468,7 +1468,7 @@ Transform:
   m_GameObject: {fileID: 1520231956}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.3, y: 0.7, z: 0}
+  m_LocalPosition: {x: 14.3, y: 2.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1499,7 +1499,7 @@ Transform:
   m_GameObject: {fileID: 1538812363}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.3, y: 3.12, z: 0}
+  m_LocalPosition: {x: 14.3, y: 4.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1537,9 +1537,9 @@ MonoBehaviour:
   easyEnemyPrefab: {fileID: 8614220779697430028, guid: 412e388d58fa39747982c3a1c524bceb, type: 3}
   mediumEnemyPrefab: {fileID: 7846689564382451378, guid: 75169407f2e91af459b760320b2300f4, type: 3}
   hardEnemyPrefab: {fileID: 1053900331612956931, guid: 392c486e0c6377e48b0fd519a806ecd7, type: 3}
-  initialSpawnRate: 3
-  minSpawnRate: 2
-  difficultyScalingSpeed: 0.2
+  initialSpawnRate: 4
+  minSpawnRate: 3
+  difficultyScalingSpeed: 0.5
 --- !u!4 &1599530494
 Transform:
   m_ObjectHideFlags: 0
@@ -1549,7 +1549,7 @@ Transform:
   m_GameObject: {fileID: 1599530492}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.33, y: -4.59, z: 0}
+  m_LocalPosition: {x: 11.33, y: -2.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
