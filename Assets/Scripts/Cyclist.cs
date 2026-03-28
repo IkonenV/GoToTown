@@ -5,6 +5,7 @@ public class Cyclist : MonoBehaviour
     public float speed = 5f;
     public float leftBoundary = -15f; // Where the object gets destroyed
     public float spawnX = 15f;      // Where to reset it (optional)
+    public int scoreFrom;
 
     void Update()
     {
@@ -26,6 +27,8 @@ public class Cyclist : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Poop"))
         {
+            PlayerAction player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAction>();
+            player.GetScore(scoreFrom);
             Destroy(gameObject);
         }
     }

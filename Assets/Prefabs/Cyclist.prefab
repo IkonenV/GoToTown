@@ -136,6 +136,7 @@ MonoBehaviour:
   speed: 2
   leftBoundary: -15
   spawnX: 15
+  scoreFrom: 200
 --- !u!61 &23843164800087287
 BoxCollider2D:
   m_ObjectHideFlags: 0
