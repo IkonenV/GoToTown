@@ -31,17 +31,27 @@ public class CyclistSpawner : MonoBehaviour
         }
     }
 
+    [Header("Spawn Timing")]
+    public float mediumStartSecond = 10f; // Mediums start appearing at 10s
+    public float hardStartSecond = 30f;   // Hards start appearing at 30s
+
     void SpawnEnemy()
     {
-        // Define weights that change over time
-        // Easy enemy weight decreases, but stays at a minimum of 10
-        float easyWeight = Mathf.Max(10f, 100f - (gameTime * 0.5f));
+        // 1. Easy enemy stays very relevant. 
+        // It starts at 100 and never drops below 40 (instead of 10).
+        float easyWeight = Mathf.Max(40f, 100f - (gameTime * 0.3f));
 
-        // Medium enemy starts appearing after 30s and peaks later
-        float mediumWeight = gameTime > 30f ? Mathf.Min(50f, (gameTime - 30f) * 0.8f) : 0f;
+        // 2. Medium enemy starts earlier and caps higher (70) so it 
+        // stays more common than the Hard enemy.
+        float mediumWeight = gameTime > mediumStartSecond
+            ? Mathf.Min(70f, (gameTime - mediumStartSecond) * 1.5f)
+            : 0f;
 
-        // Hard enemy starts appearing after 60s
-        float hardWeight = gameTime > 60f ? Mathf.Min(40f, (gameTime - 60f) * 0.5f) : 0f;
+        // 3. Hard enemy starts appearing but is capped at 30.
+        // This ensures they are "special" threats, not the entire army.
+        float hardWeight = gameTime > hardStartSecond
+            ? Mathf.Min(30f, (gameTime - hardStartSecond) * 0.5f)
+            : 0f;
 
         float totalWeight = easyWeight + mediumWeight + hardWeight;
         float randomValue = Random.Range(0, totalWeight);

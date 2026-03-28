@@ -9,6 +9,7 @@ public class Cyclist : MonoBehaviour
     PlayerAction player;
     Animator animator;
     bool dead;
+    float multiplier;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -40,6 +41,8 @@ public class Cyclist : MonoBehaviour
         if (collision.gameObject.CompareTag("Poop"))
         {
             GameObject poop = collision.gameObject;
+            Poop poop1 = poop.GetComponent<Poop>();
+            multiplier = poop1.pointMultiplier;
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAction>();
             Destroy(poop);
             animator.SetTrigger("Death");
@@ -48,7 +51,7 @@ public class Cyclist : MonoBehaviour
     }
     public void Death()
     {
-        player.GetScore(scoreFrom);
+        player.GetScore(scoreFrom * multiplier);
         Destroy(gameObject);
     }
 }

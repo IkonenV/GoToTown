@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class Poop : MonoBehaviour
 {
+    public float pointMultiplier;
+    private void Update()
+    {
+        pointMultiplier += Time.deltaTime / 1.2f;
+        pointMultiplier = Mathf.Clamp(pointMultiplier, 0, 1);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

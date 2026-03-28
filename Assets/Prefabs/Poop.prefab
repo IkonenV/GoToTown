@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271e9932cc28b424a8e77968b4620d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poop
+  pointMultiplier: 0.1
 --- !u!1 &6434936457506223765
 GameObject:
   m_ObjectHideFlags: 0
