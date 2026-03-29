@@ -9,6 +9,7 @@ public class CollectBird : MonoBehaviour
     public int fuelFrom;
     public bool goingLeft;
     public GameObject deathEffect;
+    public AudioClip deathClip;
     private void Start()
     {
         if (!goingLeft)
@@ -39,7 +40,7 @@ public class CollectBird : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //ääni
+            AudioManager.Instance.PlaySFX(deathClip);
             PlayerAction player = collision.gameObject.GetComponent<PlayerAction>();
             player.GetFuel(fuelFrom);
             GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);

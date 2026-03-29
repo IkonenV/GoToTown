@@ -4,6 +4,7 @@ public class Poop : MonoBehaviour
 {
     public float pointMultiplier;
     public float scoreFromBird;
+    public AudioClip birdDeath;
     private void Update()
     {
         pointMultiplier += Time.deltaTime / 1.2f;
@@ -11,12 +12,17 @@ public class Poop : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Poop"))
+        {
+
+        }
+        else if (collision.gameObject.CompareTag("Player"))
         {
 
         }
         else if(collision.gameObject.CompareTag("Enemy"))
         {
+            AudioManager.Instance.PlaySFX(birdDeath);
             PlayerAction playerAction = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAction>();
             playerAction.GetScore(scoreFromBird * pointMultiplier);
             GameObject bird = collision.gameObject;

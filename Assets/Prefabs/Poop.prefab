@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Poop
   pointMultiplier: 0.1
   scoreFromBird: 100
+  birdDeath: {fileID: 8300000, guid: 53fd4b0b79e88e44a9a02d346d69b143, type: 3}
 --- !u!1 &6434936457506223765
 GameObject:
   m_ObjectHideFlags: 0

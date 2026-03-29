@@ -30,6 +30,7 @@ public class PlayerAction : MonoBehaviour
     public GameObject deathEffect;
     Rigidbody2D rb;
     public Animator animator;
+    public AudioClip[] loseSound;
    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -113,10 +114,9 @@ public class PlayerAction : MonoBehaviour
     }
     public void Death()
     {
-        GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
-        ParticleSystem ps = effect.GetComponent<ParticleSystem>();
-        float duration = ps.main.duration + ps.main.startLifetime.constantMax;
-        Destroy(effect, duration);
+        AudioManager.Instance.StopMusic();
+        int randLose = Random.Range(0, loseSound.Length);
+        AudioManager.Instance.PlaySFX(loseSound[randLose]);
         deathScreen.SetActive(true);
         float lastHighScore = PlayerPrefs.GetFloat("HighScore");
         int lastHighScoreInt = Mathf.RoundToInt(lastHighScore);
@@ -139,6 +139,7 @@ public class PlayerAction : MonoBehaviour
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
+        AudioManager.Instance.PlayMusic();
     }
     public void PlayGame()
     {
@@ -151,7 +152,10 @@ public class PlayerAction : MonoBehaviour
     }
     public IEnumerator DeathEffect()
     {
+        AudioManager.Instance.StopMusic();
         rb.gravityScale = 35f;
+        int randLose = Random.Range(0, loseSound.Length);
+        AudioManager.Instance.PlaySFX(loseSound[randLose]);
         animator.SetBool("Dead", true);
         GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
         ParticleSystem ps = effect.GetComponent<ParticleSystem>();
