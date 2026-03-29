@@ -136,9 +136,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cyclist
   speed: 4
-  leftBoundary: -15
+  leftBoundary: -13
   spawnX: 15
-  scoreFrom: 1000
+  scoreFrom: 800
   scorePoint: {fileID: 145036811360526929}
 --- !u!61 &180290617025732224
 BoxCollider2D:

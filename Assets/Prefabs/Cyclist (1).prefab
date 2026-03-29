@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cyclist
   speed: 3
-  leftBoundary: -15
+  leftBoundary: -13
   spawnX: 15
   scoreFrom: 500
   scorePoint: {fileID: 7323237868872139642}
@@ -174,7 +174,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.13691854, y: 0.32860494}
+  m_Offset: {x: -0.1848402, y: 0.32860494}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -184,7 +184,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.97261715, y: 1.6572099}
+  m_Size: {x: 0.87677383, y: 1.6572099}
   m_EdgeRadius: 0
 --- !u!95 &5855727876621782824
 Animator:

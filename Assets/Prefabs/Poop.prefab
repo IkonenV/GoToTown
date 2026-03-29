@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Poop
   pointMultiplier: 0.1
-  scoreFromBird: 500
+  scoreFromBird: 100
 --- !u!1 &6434936457506223765
 GameObject:
   m_ObjectHideFlags: 0
