@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerAction : MonoBehaviour
@@ -16,11 +17,26 @@ public class PlayerAction : MonoBehaviour
     public GameObject poop3;
     public GameObject poop4;
     public GameObject poop5;
+    public GameObject deathScreen;
+    public TMP_Text yourScoreText;
+    public TMP_Text highScoreText;
+    public TMP_Text newHighScoreText;
+    public GameObject mainMenu;
+    public TMP_Text menuHighScore;
+    public GameObject poopIndicator;
+    public GameObject inGameScore;
    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        float getMenuHighScore = PlayerPrefs.GetFloat("HighScore");
+        int getMenuHighScoreInt = Mathf.RoundToInt(getMenuHighScore);
         UpdateScore();
+        menuHighScore.text = "Highscore: " + getMenuHighScoreInt;
+        poopIndicator.SetActive(false);
+        inGameScore.SetActive(false);
+        Time.timeScale = 0f;
+
     }
 
     // Update is called once per frame
@@ -87,4 +103,37 @@ public class PlayerAction : MonoBehaviour
     {
         scoreText.text = "Score: " + scoreInt;
     }
+    public void Death()
+    {
+        deathScreen.SetActive(true);
+        float lastHighScore = PlayerPrefs.GetFloat("HighScore");
+        int lastHighScoreInt = Mathf.RoundToInt(lastHighScore);
+        Time.timeScale = 0f;
+        if(scoreInt > lastHighScoreInt)
+        {
+            PlayerPrefs.SetFloat("HighScore", scoreInt);
+            newHighScoreText.enabled = true;
+            newHighScoreText.text = "New highscore: " + scoreInt;
+        }
+        else
+        {
+            yourScoreText.enabled = true;
+            yourScoreText.text = "Your score: " + scoreInt;
+            highScoreText.enabled= true;
+            highScoreText.text = "highscore: " + lastHighScoreInt;
+        }
+    }
+    public void ToMenu()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+    public void PlayGame()
+    {
+        Time.timeScale = 1f;
+        mainMenu.SetActive(false);
+        poopIndicator.SetActive(true );
+        inGameScore.SetActive(true);
+    }
+
 }

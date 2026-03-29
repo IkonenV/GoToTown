@@ -25,8 +25,8 @@ public class Plane : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Kuolit");
-            Time.timeScale = 0;
+            PlayerAction playerAction = collision.gameObject.GetComponent<PlayerAction>();
+            playerAction.Death();
         }
     }
 }

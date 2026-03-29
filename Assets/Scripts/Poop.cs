@@ -17,7 +17,7 @@ public class Poop : MonoBehaviour
         else if(collision.gameObject.CompareTag("Enemy"))
         {
             PlayerAction playerAction = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAction>();
-            playerAction.GetScore(1000);
+            playerAction.GetScore(1000 * pointMultiplier);
             GameObject bird = collision.gameObject;
             Destroy(bird);
             Destroy(gameObject);

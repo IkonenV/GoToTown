@@ -26,8 +26,9 @@ public class Cyclist : MonoBehaviour
             if (transform.position.x < leftBoundary)
             {
                 // Option A: Destroy it (best for spawned obstacles)
-                Debug.Log("Hävisit");
-                Time.timeScale = 0;
+                PlayerAction action = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAction>();
+                action.Death();
+                Destroy(gameObject);
 
                 // Option B: Loop it (uncomment below to make it reappear on the right)
                 // transform.position = new Vector2(spawnX, transform.position.y);
