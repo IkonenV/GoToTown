@@ -5,6 +5,13 @@ public class Poop : MonoBehaviour
     public float pointMultiplier;
     public float scoreFromBird;
     public AudioClip birdDeath;
+    public AudioClip splash;
+    public AudioSource source;
+
+    private void Start()
+    {
+        source.Play();
+    }
     private void Update()
     {
         pointMultiplier += Time.deltaTime / 1.2f;
@@ -20,6 +27,10 @@ public class Poop : MonoBehaviour
         {
 
         }
+        else if (collision.gameObject.CompareTag("Cyclist"))
+        {
+
+        }
         else if(collision.gameObject.CompareTag("Enemy"))
         {
             AudioManager.Instance.PlaySFX(birdDeath);
@@ -31,10 +42,13 @@ public class Poop : MonoBehaviour
             PopUpManager popUpManager = GameObject.FindGameObjectWithTag("PopUpManager").GetComponent<PopUpManager>();
             popUpManager.SpawnPopUp(bird.transform.position, scorePopUp);
             Destroy(gameObject);
+            source.Stop();
         }
         else
         {
+            AudioManager.Instance.PlaySFX(splash);
             Destroy(gameObject);
+            source.Stop();
         }
 
     }

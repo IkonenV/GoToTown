@@ -31,6 +31,7 @@ public class PlayerAction : MonoBehaviour
     Rigidbody2D rb;
     public Animator animator;
     public AudioClip[] loseSound;
+    public AudioClip deathSound;
    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -114,9 +115,10 @@ public class PlayerAction : MonoBehaviour
     }
     public void Death()
     {
-        AudioManager.Instance.StopMusic();
-        int randLose = Random.Range(0, loseSound.Length);
-        AudioManager.Instance.PlaySFX(loseSound[randLose]);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        inGameScore.SetActive(false);
+        poopIndicator.SetActive(false);
         deathScreen.SetActive(true);
         float lastHighScore = PlayerPrefs.GetFloat("HighScore");
         int lastHighScoreInt = Mathf.RoundToInt(lastHighScore);
@@ -124,6 +126,7 @@ public class PlayerAction : MonoBehaviour
         if(scoreInt > lastHighScoreInt)
         {
             PlayerPrefs.SetFloat("HighScore", scoreInt);
+            PlayerPrefs.Save();
             newHighScoreText.enabled = true;
             newHighScoreText.text = "New highscore: " + scoreInt;
         }
@@ -149,10 +152,13 @@ public class PlayerAction : MonoBehaviour
         mainMenu.SetActive(false);
         poopIndicator.SetActive(true );
         inGameScore.SetActive(true);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     public IEnumerator DeathEffect()
     {
         AudioManager.Instance.StopMusic();
+        AudioManager.Instance.PlaySFX(deathSound);
         rb.gravityScale = 35f;
         int randLose = Random.Range(0, loseSound.Length);
         AudioManager.Instance.PlaySFX(loseSound[randLose]);
@@ -167,6 +173,12 @@ public class PlayerAction : MonoBehaviour
     public void StartDeath()
     {
         StartCoroutine(DeathEffect());
+    }
+    public void LoseSound()
+    {
+        AudioManager.Instance.StopMusic();
+        int randLose = Random.Range(0, loseSound.Length);
+        AudioManager.Instance.PlaySFX(loseSound[randLose]);
     }
 
 }

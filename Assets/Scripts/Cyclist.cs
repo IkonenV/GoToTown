@@ -11,6 +11,7 @@ public class Cyclist : MonoBehaviour
     bool dead;
     float multiplier;
     public Transform scorePoint;
+    public AudioClip slimeImpact;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -29,6 +30,7 @@ public class Cyclist : MonoBehaviour
                 // Option A: Destroy it (best for spawned obstacles)
                 PlayerAction action = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAction>();
                 action.Death();
+                action.LoseSound();
                 Destroy(gameObject);
 
                 // Option B: Loop it (uncomment below to make it reappear on the right)
@@ -42,6 +44,7 @@ public class Cyclist : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Poop"))
         {
+            AudioManager.Instance.PlaySFX(slimeImpact);
             GameObject poop = collision.gameObject;
             Poop poop1 = poop.GetComponent<Poop>();
             multiplier = poop1.pointMultiplier;
@@ -49,6 +52,10 @@ public class Cyclist : MonoBehaviour
             Destroy(poop);
             animator.SetTrigger("Death");
             dead = true;
+            int scorePopUp = Mathf.RoundToInt(scoreFrom * multiplier);
+            PopUpManager popUpManager = GameObject.FindGameObjectWithTag("PopUpManager").GetComponent<PopUpManager>();
+            popUpManager.SpawnPopUp(scorePoint.position, scorePopUp);
+            player.GetScore(scoreFrom * multiplier);
         }
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -58,10 +65,7 @@ public class Cyclist : MonoBehaviour
     }
     public void Death()
     {
-        int scorePopUp = Mathf.RoundToInt(scoreFrom * multiplier);
-        PopUpManager popUpManager = GameObject.FindGameObjectWithTag("PopUpManager").GetComponent<PopUpManager>();
-        popUpManager.SpawnPopUp(scorePoint.position, scorePopUp);
-        player.GetScore(scoreFrom * multiplier);
+
         Destroy(gameObject);
     }
 }

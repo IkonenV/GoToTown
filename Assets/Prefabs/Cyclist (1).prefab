@@ -136,10 +136,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cyclist
   speed: 3
-  leftBoundary: -13
+  leftBoundary: -11.5
   spawnX: 15
   scoreFrom: 500
   scorePoint: {fileID: 7323237868872139642}
+  slimeImpact: {fileID: 8300000, guid: a11002c456155134a92be599044e961c, type: 3}
 --- !u!61 &4341348274214555803
 BoxCollider2D:
   m_ObjectHideFlags: 0

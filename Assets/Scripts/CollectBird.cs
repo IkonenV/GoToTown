@@ -51,6 +51,7 @@ public class CollectBird : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Plane"))
         {
+            AudioManager.Instance.PlaySFX(deathClip);
             GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
             ParticleSystem ps = effect.GetComponent<ParticleSystem>();
             float duration = ps.main.duration + ps.main.startLifetime.constantMax;
@@ -60,6 +61,7 @@ public class CollectBird : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            AudioManager.Instance.PlaySFX(deathClip);
             GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
             ParticleSystem ps = effect.GetComponent<ParticleSystem>();
             float duration = ps.main.duration + ps.main.startLifetime.constantMax;
