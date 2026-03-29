@@ -99,6 +99,7 @@ MonoBehaviour:
   spawnX: 15
   fuelFrom: 3
   goingLeft: 1
+  deathEffect: {fileID: 6112730231886684882, guid: 3122ce00480c3514ea5603ec89d67837, type: 3}
 --- !u!50 &3066677631243144518
 Rigidbody2D:
   serializedVersion: 5

@@ -7,6 +7,7 @@ public class BirdSpawner : MonoBehaviour
     public float spawnInterval = 2.0f;
     public float minY = -4.0f;
     public float maxY = 4.0f;
+    public float scoreFrom;
 
     private float timer;
 

@@ -1,3 +1,5 @@
+using NUnit.Framework.Internal;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,10 +27,15 @@ public class PlayerAction : MonoBehaviour
     public TMP_Text menuHighScore;
     public GameObject poopIndicator;
     public GameObject inGameScore;
+    public GameObject deathEffect;
+    Rigidbody2D rb;
+    public Animator animator;
    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        rb = GetComponent<Rigidbody2D>();
         float getMenuHighScore = PlayerPrefs.GetFloat("HighScore");
         int getMenuHighScoreInt = Mathf.RoundToInt(getMenuHighScore);
         UpdateScore();
@@ -36,6 +43,7 @@ public class PlayerAction : MonoBehaviour
         poopIndicator.SetActive(false);
         inGameScore.SetActive(false);
         Time.timeScale = 0f;
+        
 
     }
 
@@ -105,6 +113,10 @@ public class PlayerAction : MonoBehaviour
     }
     public void Death()
     {
+        GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+        ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+        float duration = ps.main.duration + ps.main.startLifetime.constantMax;
+        Destroy(effect, duration);
         deathScreen.SetActive(true);
         float lastHighScore = PlayerPrefs.GetFloat("HighScore");
         int lastHighScoreInt = Mathf.RoundToInt(lastHighScore);
@@ -130,10 +142,27 @@ public class PlayerAction : MonoBehaviour
     }
     public void PlayGame()
     {
+        
         Time.timeScale = 1f;
+        rb.gravityScale = 0f;
         mainMenu.SetActive(false);
         poopIndicator.SetActive(true );
         inGameScore.SetActive(true);
+    }
+    public IEnumerator DeathEffect()
+    {
+        rb.gravityScale = 35f;
+        animator.SetBool("Dead", true);
+        GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+        ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+        float duration = ps.main.duration + ps.main.startLifetime.constantMax;
+        Destroy(effect, duration);
+        yield return new WaitForSeconds(1);
+        Death();
+    }
+    public void StartDeath()
+    {
+        StartCoroutine(DeathEffect());
     }
 
 }

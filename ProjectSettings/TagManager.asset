@@ -9,6 +9,7 @@ TagManager:
   - Plane
   - Enemy
   - Slider
+  - PopUpManager
   layers:
   - Default
   - TransparentFX

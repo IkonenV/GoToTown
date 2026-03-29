@@ -10,6 +10,7 @@ public class Cyclist : MonoBehaviour
     Animator animator;
     bool dead;
     float multiplier;
+    public Transform scorePoint;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -49,9 +50,17 @@ public class Cyclist : MonoBehaviour
             animator.SetTrigger("Death");
             dead = true;
         }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerAction playerAction = collision.gameObject.GetComponent<PlayerAction>();
+            playerAction.StartDeath();
+        }
     }
     public void Death()
     {
+        int scorePopUp = Mathf.RoundToInt(scoreFrom * multiplier);
+        PopUpManager popUpManager = GameObject.FindGameObjectWithTag("PopUpManager").GetComponent<PopUpManager>();
+        popUpManager.SpawnPopUp(scorePoint.position, scorePopUp);
         player.GetScore(scoreFrom * multiplier);
         Destroy(gameObject);
     }

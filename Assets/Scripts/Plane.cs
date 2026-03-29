@@ -26,7 +26,7 @@ public class Plane : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerAction playerAction = collision.gameObject.GetComponent<PlayerAction>();
-            playerAction.Death();
+            playerAction.StartDeath();
         }
     }
 }

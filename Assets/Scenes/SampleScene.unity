@@ -547,6 +547,8 @@ MonoBehaviour:
   menuHighScore: {fileID: 648733958}
   poopIndicator: {fileID: 1980594696}
   inGameScore: {fileID: 1496301676}
+  deathEffect: {fileID: 6112730231886684882, guid: cbe83b3c4912df74aab408870b5a2f79, type: 3}
+  animator: {fileID: 992306085}
 --- !u!61 &216423768
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2198,6 +2200,7 @@ MonoBehaviour:
   spawnInterval: 3
   minY: -1
   maxY: 4.2
+  scoreFrom: 0
 --- !u!4 &689022173
 Transform:
   m_ObjectHideFlags: 0
@@ -2303,6 +2306,52 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1980594697}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &732628685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 732628687}
+  - component: {fileID: 732628686}
+  m_Layer: 0
+  m_Name: PopUpManager
+  m_TagString: PopUpManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &732628686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732628685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b177a889f80a043a5a812d3a954682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopUpManager
+  cam: {fileID: 0}
+  popUpPrefab: {fileID: 207222908962153882, guid: c1328d1f5761adf4aa5302f9c8e1822f, type: 3}
+--- !u!4 &732628687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732628685}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.14074, y: 0.91811, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &800275272
 GameObject:
@@ -3727,7 +3776,7 @@ MonoBehaviour:
   minSpawnRate: 3.8
   difficultyScalingSpeed: 0.5
   mediumStartSecond: 5
-  hardStartSecond: 15
+  hardStartSecond: 7
 --- !u!4 &1599530494
 Transform:
   m_ObjectHideFlags: 0
@@ -4344,3 +4393,4 @@ SceneRoots:
   - {fileID: 280991776}
   - {fileID: 801511499}
   - {fileID: 1980594697}
+  - {fileID: 732628687}
